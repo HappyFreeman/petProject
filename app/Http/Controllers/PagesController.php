@@ -23,9 +23,4 @@ class PagesController extends Controller
     {
         return view('pages.renovation'); // pages/renovation.blade.php
     }
-
-    public function portfolio(): Factory|View|Application  // страница портфолио
-    {
-        return view('pages.portfolio'); // pages/portfolio.blade.php
-    }
 }
