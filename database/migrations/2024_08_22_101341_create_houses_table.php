@@ -13,8 +13,21 @@ return new class extends Migration
     {
         Schema::create('houses', function (Blueprint $table) {
             $table->id();
+            $table->string('name');  // название | string notnull name
+            $table->integer('days');
+            $table->integer('area');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
+        /*
+        когда попадет в продакшен и появится надобность менять таблицу то
+        php artisan make:migration update_houses --table=houses
+        и
+        не забыть поменять метод down. типа
+        Schema::table('houses', function (Blueprint $table) {
+            $table->dropColumn(['перечислить,' 'поля', 'которые добавлю']);
+        });
+        */
     }
 
     /**

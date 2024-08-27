@@ -13,6 +13,7 @@
 </header>
 
 <main>
+    {{--<x-panels.messages.flashes />--}}
     {{ $slot }}
 </main>
 

@@ -9,9 +9,9 @@ class HouseRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      */
-    public function authorize(): bool
+    public function authorize(): bool //Определите, авторизован ли пользователь для выполнения этого запроса.
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class HouseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            // https://laravel.com/docs/11.x/validation#available-validation-rules
+            
         ];
     }
 }

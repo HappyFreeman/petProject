@@ -12,6 +12,15 @@
                 <li class="nav-item"><a class="nav-link" href="{{ route('renovation') }}">Ремонт</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('construction') }}">Строительство</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('test') }}">тест</a></li>
+                @auth
+                    <form method="post" action="{{ route('logout') }}" class="">
+                        @csrf
+                        <button type="submit" class="nav-link">
+                            {{--<x-icons.exit class="" />--}}
+                            <span>Выйти</span>
+                        </button>
+                    </form>
+                @endauth
             </ul>
         </div>
     </div>

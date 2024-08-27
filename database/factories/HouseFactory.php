@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Image;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,11 @@ class HouseFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->word(), // случайное слово
+            'days' => rand(100, 250), // случайное от 100 до 250
+            'area' => rand(50, 120),
+            'image_id' => Image::factory(),
+
         ];
     }
 }
