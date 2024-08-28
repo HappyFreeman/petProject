@@ -23,7 +23,30 @@ class HouseRequest extends FormRequest
     {
         return [
             // https://laravel.com/docs/11.x/validation#available-validation-rules
-            
+            'name' => 'required',
+            'area' => 'required|integer',
+            'days' => 'required|integer',
+            'image' => ['sometimes', 'nullable', 'image'],
+            'images.*' => ['sometimes', 'nullable', 'image'],
         ];
     }
+
+    /*
+    public function validated($key = null, $default = null)
+    { // https://laravel.com/docs/11.x/validation#form-request-validation
+
+        $house = parent::validated();
+        $house['area'] = isset($house['area']) ? 12 : 14;
+        //dd($house);
+        return $house;
+    }
+    */
+    /*
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'area' => $this->has('area'), // 
+        ]);
+    }
+    */
 }

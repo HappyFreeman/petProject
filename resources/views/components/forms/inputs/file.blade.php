@@ -5,9 +5,9 @@
 <input
     type="file"
     @class([
-        'block w-full rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50',
-        'border-red-600' => ! empty($error),
-        'border-gray-300' => empty($error),
+        'block w-full text-sm text-gray-900 border rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:placeholder-gray-400',
+        'border-red-600 dark:border-red-800' => ! empty($error),
+        'border-gray-300 dark:border-gray-600' => empty($error),
         $attributes->get('class'),
     ])
     {{ $attributes->except('class', 'type') }}

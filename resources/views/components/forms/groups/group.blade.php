@@ -2,13 +2,14 @@
     'for',
     'error' => null,
 ])
-<div {{ $attributes->merge(['class' => 'mb-3']) }}>
-    <x-forms.groups.label for="{{ $for }}" class="">{{ $label }}</x-forms.groups.label>
-
-    {{ $slot }}
-
-    @if (! empty($error))
-        <span class="text-danger form-text">{{ $error }}</span>
-    @endif
-</div>
+<x-forms.row {{ $attributes }}>
+    <x-forms.groups.label for="{{ $for }}">{{ $label }}</x-forms.groups.label>
+   
+    <div class="mt-1">
+        {{ $slot }}
+    </div>
     
+    @if (! empty($error))
+        <span class="text-xs italic text-red-600">{{ $error }}</span>
+    @endif
+</x-forms.row>

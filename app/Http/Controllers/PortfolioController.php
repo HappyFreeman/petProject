@@ -15,7 +15,7 @@ class PortfolioController extends Controller
 
     public function index(): View
     {
-        return view('pages.portfolio.index', ['posts' => $this->housesRepository->findAll()]);
+        return view('pages.portfolio.index', ['houses' => $this->housesRepository->findAll()]);
     }
 
     public function show($id): View

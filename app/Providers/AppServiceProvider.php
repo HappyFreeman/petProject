@@ -41,11 +41,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(HouseUpdateServiceContract::class, HousesService::class);
         $this->app->singleton(HouseRemoverServiceContract::class, HousesService::class);
 
-        /*
+        
         $this->app->singleton(ImagesServiceContract::class, function () {
-            return $this->app->make(ImagesService::class, ['disk' => 'public']);
+            return $this->app->make(ImagesService::class, ['disk' => 'local']); // public
         });
-        */
+        
     }
 
     /**

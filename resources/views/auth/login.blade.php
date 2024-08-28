@@ -8,13 +8,13 @@
 @endif
 <x-panels.messages.form_validation_errors />
 
-<x-forms.form action="{{ route('login') }}" method="POST" class="">
+<x-forms.form action="{{ route('login') }}" method="POST" class="max-w-md mx-auto">
     @csrf
 
     <!-- Email Address -->
     <x-forms.concrete-forms-fields.auth.email />
     
-    <!-- Password -->
+    <!-- Password  -->
     <x-forms.concrete-forms-fields.auth.password />
     
     <x-forms.submit-button>Войти</x-forms.submit-button>

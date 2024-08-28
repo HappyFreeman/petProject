@@ -12,7 +12,7 @@ class House extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'image_id']; // название полей которые можно массово заполнять
+    protected $fillable = ['name', 'image_id', 'area', 'days']; // название полей которые можно массово заполнять
 
     public function image(): BelongsTo
     {
