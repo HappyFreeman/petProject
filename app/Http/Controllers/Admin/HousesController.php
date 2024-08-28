@@ -31,10 +31,10 @@ class HousesController extends Controller
      */
     public function index(): Factory|View|Application
     {
-        $this->authorize('viewAny', House::class);
+        //$this->authorize('viewAny', House::class);
         $houses = $this->housesRepository->findAll();
         //return view('admin.houses.index', compact('houses'));
-        return view('admin.houses.list', ['houses' => $houses]);
+        return view('pages.admin.houses.list', ['houses' => $houses]);
     }
 
     /**
@@ -42,8 +42,8 @@ class HousesController extends Controller
      */
     public function create(): Factory|View|Application
     {
-        $this->authorize('create', House::class);
-        return view('pages.admin.houses.create', ['car' => $this->housesRepository->getModel()]);
+        //$this->authorize('create', House::class);
+        return view('pages.admin.houses.create', ['house' => $this->housesRepository->getModel()]);
     }
 
     /**
@@ -54,7 +54,7 @@ class HousesController extends Controller
         HouseCreationServiceContract $houseCreationService,
         FlashMessageContract $flashMessage
     ): RedirectResponse {
-        $this->authorize('create', House::class);
+        //$this->authorize('create', House::class);
 
         $house = $houseCreationService->create($request->validated());
 
@@ -77,7 +77,7 @@ class HousesController extends Controller
     public function edit(int $id): View
     {
         $house = $this->housesRepository->getById($id, ['image', 'images']);
-        $this->authorize('update', $house);
+        //$this->authorize('update', $house);
         //$this->authorize('update', [House::class, $id]);
         return view('pages.admin.houses.edit', ['house' => $house]);
     }
@@ -91,7 +91,7 @@ class HousesController extends Controller
         HouseUpdateServiceContract $houseUpdateService,
         FlashMessageContract $flashMessage
     ): RedirectResponse {
-        $this->authorize('update', [House::class, $id]);
+        //$this->authorize('update', [House::class, $id]);
         $house = $houseUpdateService->update($id, $request->validated());
         
         //$flashMessage = new FlashMessage();
@@ -108,7 +108,7 @@ class HousesController extends Controller
         HouseRemoverServiceContract $houseRemoverService,
         FlashMessageContract $flashMessage
     ): RedirectResponse {
-        $this->authorize('delete', [House::class, $id]); // сначала проверка
+        //$this->authorize('delete', [House::class, $id]); // сначала проверка
 
         $houseRemoverService->delete($id); // потом удаление
 

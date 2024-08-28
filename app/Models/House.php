@@ -28,4 +28,9 @@ class House extends Model
     {
         return Attribute::get(fn () => $this->image?->url ?: '/assets/images/no_image.png');
     }
+
+    public function name(): Attribute // мутатор(set) - изменяет данные перед отправкой в бд
+    {
+        return Attribute::set(fn ($value) => ucfirst($value)); // меняем 1ю букву на заглавнию
+    }
 }
