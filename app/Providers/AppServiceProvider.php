@@ -43,7 +43,7 @@ class AppServiceProvider extends ServiceProvider
 
         
         $this->app->singleton(ImagesServiceContract::class, function () {
-            return $this->app->make(ImagesService::class, ['disk' => 'local']); // public
+            return $this->app->make(ImagesService::class, ['disk' => 'public']); // public
         });
         
     }
