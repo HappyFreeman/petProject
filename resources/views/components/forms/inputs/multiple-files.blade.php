@@ -26,7 +26,6 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    // ЭТУ ЕРУНДУ НАДО БУДЕТ ПЕРЕДЕЛАТЬ http code 418
     $(document).ready(function() {
         $(document).on('click', '#delete-image-btn', function() {
             let image = $(this);
@@ -40,15 +39,11 @@
                         xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
                     },
                     success: function(response) {
-                        if (response.success) {
-                            image.parent().remove(); // Remove the image element from the DOM
-                        } else {
-                            //alert('Failed to delete the image.');
-                        }
+                        image.parent().remove();
                     },
                     error: function(xhr) {
-                        image.parent().remove(); // Remove the image element from the DOM
-                        //console.log('Error:', xhr.responseText);
+                        //image.parent().remove(); // Remove the image element from the DOM
+                        alert('неуспешный неуспех');
                     }
                 });
             }

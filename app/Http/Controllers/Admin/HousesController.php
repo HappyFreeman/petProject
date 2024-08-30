@@ -124,12 +124,6 @@ class HousesController extends Controller
         ImagesServiceContract $imagesService,
         FlashMessageContract $flashMessage
     ) {
-        //$this->authorize('delete', [House::class, $id]); // сначала проверка
-
         $imagesService->deleteImage($image);
-
-        //$flashMessage->success('изображение успешно удалено');
-
-        return back();
     }
 }
