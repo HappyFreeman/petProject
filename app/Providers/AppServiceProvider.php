@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Contracts\Services\CatalogDataCollectorServiceContract;
 use App\Contracts\Services\FlashMessageContract;
 use App\Contracts\Services\HouseCreationServiceContract;
 use App\Contracts\Services\HouseUpdateServiceContract;
@@ -9,6 +10,7 @@ use App\Contracts\Services\HouseRemoverServiceContract;
 use App\Contracts\Services\ImagesServiceContract;
 
 use App\Contracts\Services\MessageLimiterContract;
+use App\Services\CatalogDataCollectorService;
 use App\Services\FlashMessage;
 use App\Services\HousesService;
 use App\Services\ImagesService;
@@ -45,6 +47,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(ImagesServiceContract::class, function () {
             return $this->app->make(ImagesService::class, ['disk' => 'public']); // public
         });
+
+        $this->app->singleton(CatalogDataCollectorServiceContract::class, CatalogDataCollectorService::class);
         
     }
 

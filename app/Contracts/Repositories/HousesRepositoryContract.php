@@ -4,6 +4,7 @@ namespace App\Contracts\Repositories;
 
 use App\Models\House;
 use Illuminate\Support\Collection;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 interface HousesRepositoryContract
 {
@@ -20,4 +21,13 @@ interface HousesRepositoryContract
     public function delete(int $id): void;
 
     public function syncWithoutDetachingImages(House $house, array $images): House;
+
+    public function paginateForCatalog(
+        //CatalogFilterDTO $catalogFilterDTO, // мож фильтер добавить
+        int $perPage = 10,
+        int $page = 1,
+        array $fields = ['*'],
+        string $pageName = 'page',
+        array $relations = [],
+    ): LengthAwarePaginator;
 }

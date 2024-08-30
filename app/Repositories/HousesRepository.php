@@ -6,6 +6,8 @@ use App\Contracts\Repositories\HousesRepositoryContract;
 
 use App\Models\House;
 use Illuminate\Support\Collection;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 //use Illuminate\Support\Facades\Cache; // может реализовать? эх редиска
 
 class HousesRepository implements HousesRepositoryContract
@@ -50,6 +52,23 @@ class HousesRepository implements HousesRepositoryContract
         $house->images()->syncWithoutDetaching($images);
 
         return $house;
+    }
+
+    public function paginateForCatalog(
+        //CatalogFilterDTO $catalogFilterDTO,
+        int $perPage = 10,
+        int $page = 1,
+        array $fields = ['*'],
+        string $pageName = 'page',
+        array $relations = []
+    ): LengthAwarePaginator {
+        
+        return $this
+            //->catalogQuery($catalogFilterDTO)
+            ->getModel() // при реализации catalogQuery там получаем модель и фильтруем => эту строчку убрать
+            ->with($relations)
+            ->paginate($perPage, $fields, $pageName, $page)
+        ;
     }
 
     public function getModel(): House

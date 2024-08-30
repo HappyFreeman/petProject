@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Repositories\HousesRepositoryContract;
+use App\Contracts\Services\CatalogDataCollectorServiceContract;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\Request;
@@ -13,9 +14,15 @@ class PortfolioController extends Controller
     {
     }
 
-    public function index(): View
-    {
-        return view('pages.portfolio.index', ['houses' => $this->housesRepository->findAll()]);
+    public function index(
+        Request $request,
+        CatalogDataCollectorServiceContract $catalogDataCollector
+    ): View {
+        $housesData = $catalogDataCollector->collectCatalogData(
+            10,
+            $request->get('page', 1)
+        );
+        return view('pages.portfolio.index', ['housesData' => $housesData]);
     }
 
     public function show($id): View

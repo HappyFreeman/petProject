@@ -1,9 +1,8 @@
 <x-layouts.app
     page-title="Портфолио"
 >
-
 <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-@forelse ($houses as $house)
+@forelse ($housesData->houses as $house)
     <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <a href="{{ route('portfolio.show', ['house' => $house->id]) }}">
             <img class="rounded-t-lg" src="{{ $house->imageUrl }}" alt="" />
