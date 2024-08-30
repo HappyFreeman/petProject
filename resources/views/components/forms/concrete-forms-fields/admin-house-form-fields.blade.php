@@ -49,6 +49,6 @@
         id="fieldHouseAdditionalImages"
         name="images[]"
         error="{{ $errors->first('images') }}"
-        :values="$house->images->pluck('url')->all()"
+        :values="$house->images"
     />
 </x-forms.groups.group>

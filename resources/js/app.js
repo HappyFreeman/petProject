@@ -3,8 +3,8 @@ import './bootstrap';
 import 'flowbite';
 //import 'bootstrap/dist/js/bootstrap.min.js';
 
-//import $ from 'jquery'
-//window.jQuery = window.$ = $;
+import $ from 'jquery'
+window.jQuery = window.$ = $;
 
 
 var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');

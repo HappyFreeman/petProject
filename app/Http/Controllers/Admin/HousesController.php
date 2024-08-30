@@ -7,6 +7,7 @@ use App\Contracts\Services\FlashMessageContract;
 use App\Contracts\Services\HouseCreationServiceContract;
 use App\Contracts\Services\HouseRemoverServiceContract;
 use App\Contracts\Services\HouseUpdateServiceContract;
+use App\Contracts\Services\ImagesServiceContract;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\HouseRequest;
 use App\Models\House;
@@ -113,6 +114,21 @@ class HousesController extends Controller
         $houseRemoverService->delete($id); // потом удаление
 
         $flashMessage->success('Проект успешно удален');
+
+        return back();
+    }
+
+    public function destroyImage(
+        //int $house,
+        int $image,
+        ImagesServiceContract $imagesService,
+        FlashMessageContract $flashMessage
+    ) {
+        //$this->authorize('delete', [House::class, $id]); // сначала проверка
+
+        $imagesService->deleteImage($image);
+
+        //$flashMessage->success('изображение успешно удалено');
 
         return back();
     }

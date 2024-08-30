@@ -51,7 +51,7 @@
                         @csrf
                         @method('DELETE')
                         <button
-                            class="btn btn-secondary"
+                            {{--class="inline-block bg-gray-400 hover:bg-opacity-70 focus:outline-none text-white font-bold py-2 px-4 rounded"--}}
                             title="удалить"
                             onclick="return confirm('Вы уверены, что хотите удалить этот проект?')"
                         >

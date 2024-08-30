@@ -37,5 +37,6 @@ Route::prefix('admin')
     ->group(function (Router $router) {
         $router->get('/', [AdminPagesController::class, 'admin'])->name('admin');
         $router->resource('houses', HousesController::class)->except(['show']); // стандарт rest | except(['show']) - исключает метод show
+        $router->delete('houses/images/{image}', [HousesController::class, 'destroyImage'])->name('houses.images.destroy');
     })
 ;
