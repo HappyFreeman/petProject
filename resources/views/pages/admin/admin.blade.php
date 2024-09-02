@@ -1,13 +1,15 @@
 <x-layouts.app
     page-title="Управление сайтом"
 >
-{{-- 
+
 <section>
-    <div class="px-6 py-4 text-center">
-        <div>
-            <a href="{{ route('admin.house.index') }}">Управление домами</a>
-        </div>
+    <div class="text-center mt-8">
+        <a href="{{ route('admin.houses.index') }}">
+            <span class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                Управление домами
+            </span>
+        </a>
     </div>
 </section>
---}}
+
 </x-layouts.app>

@@ -84,10 +84,14 @@ class HousesService implements HouseCreationServiceContract, HouseUpdateServiceC
 
     public function delete(int $id)
     {
-        $house = $this->housesRepository->getById($id);
+        $house = $this->housesRepository->getById($id, ['images']);
 
-        if (! empty($car->image_id)) {
-            $this->imagesService->deleteImage($house->image_id);
+        if (! empty($house->image_id)) {
+            $this->imagesService->deleteImage($house->image_id); // удалить титульное изображение
+        }
+
+        foreach ($house->images as $image) {
+            $this->imagesService->deleteImage($image->id); // удалить связанные изображения
         }
 
         $this->housesRepository->delete($id);
