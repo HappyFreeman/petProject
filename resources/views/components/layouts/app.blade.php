@@ -24,7 +24,7 @@
 </header>
 
 <main>
-    {{--<x-panels.messages.flashes />--}}
+    <x-panels.messages.flashes />
     {{ $slot }}
 </main>
 {{--

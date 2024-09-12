@@ -18,8 +18,8 @@
         </div>
     </div>
 @empty
-    <div><p class="text-black text-xl">Данные временно недоступны, пожалуйста попробуйте позже</p></div>
+    <div><p class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Данные временно недоступны, пожалуйста попробуйте позже</p></div>
 @endforelse
 </div>
-
+<x-panels.pagination :paginator="$housesData->houses" />
 </x-layouts.app>

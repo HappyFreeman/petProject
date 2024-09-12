@@ -122,8 +122,8 @@ class HousesController extends Controller
         //int $house,
         int $image,
         ImagesServiceContract $imagesService,
-        FlashMessageContract $flashMessage
-    ) {
+        //FlashMessageContract $flashMessage
+    ): void {
         $imagesService->deleteImage($image);
     }
 }
