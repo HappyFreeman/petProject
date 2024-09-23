@@ -7,3 +7,5 @@ window.jQuery = window.$ = $;
 
 import './theme'
 
+import './scrollToTop'
+

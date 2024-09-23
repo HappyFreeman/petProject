@@ -2,50 +2,21 @@
     :page-title="$house->name"
 >
 
+
+
+
 <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
     <div>
         <img class="w-full" src="{{ $house->imageUrl }}" alt="{{ $house->name }}">
     </div>
     {{--
-    <div id="controls-carousel" class="relative w-full" data-carousel="static">
-        <!-- Carousel wrapper -->
-        <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-             <!-- Item 1 -->
-            @foreach ($house->images as $image)
-            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="{{ $image->url }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="{{ $house->name }}">
-            </div>
-            @endforeach
-            
-        </div>
-        <!-- Slider controls -->
-        <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
-                </svg>
-                <span class="sr-only">Previous</span>
-            </span>
-        </button>
-        <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-                </svg>
-                <span class="sr-only">Next</span>
-            </span>
-        </button>
+    <div>
+        <iframe class="mx-auto h-full w-full" src="https://www.youtube.com/embed/hsffPST-x1k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
     --}}
-    {{--
-       <div class="multiple-items">
-        @foreach ($house->images as $image)
-        <div>
-            <img src="{{ $image->url }}" class="" alt="{{ $house->name }}">
-        </div>
-        @endforeach
-       </div>
-    --}}
+    <div>
+        info
+    </div>
 </div>
 
 {{--
@@ -96,53 +67,75 @@
     </div>
 </div>
 
+<!-- image -->
+<div class="bg-white dark:bg-gray-900 py-6 sm:py-8 lg:py-12">
+    <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+        
+        <div class="mb-4 flex items-center justify-between gap-8 sm:mb-8 md:mb-12">
+            <div class="flex items-center gap-12">
+                <h2 class="text-2xl font-bold text-gray-800 lg:text-3xl dark:text-white">Gallery</h2>
+
+                <p class="hidden max-w-screen-sm text-gray-500 dark:text-gray-300 md:block">
+                    This is a section of some simple filler text,
+                    also known as placeholder text. It shares some characteristics of a real written text.
+                </p>
+            </div>
+
+            <a href="#"
+                class="inline-block rounded-lg border bg-white dark:bg-gray-700 dark:border-none px-4 py-2 text-center text-sm font-semibold text-gray-500 dark:text-gray-200 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-100 focus-visible:ring active:bg-gray-200 md:px-8 md:py-3 md:text-base">
+                More
+            </a>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 xl:gap-8">
+            @foreach ($house->images as $image)
+            <!-- image - start -->
+            <div
+                class="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-80">
+                <img
+                    src="{{ $image->url }}"
+                    loading="lazy"
+                    alt=""
+                    class="cursor-pointer absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                    onclick="openModal({{ $loop->index }})"
+                />
+            </div>
+            <!-- image - end -->
+            @endforeach
+        </div>
+    </div>
+</div>
+<!-- image -->
+
 <!-- Модальное окно -->
-<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden z-50" onclick="closeModal()">
-    <div class="relative max-w-3xl w-full" onclick="event.stopPropagation()">
-        <!-- Кнопка для закрытия модального окна -->
-        {{--<button class="absolute top-4 right-4 text-white text-3xl font-bold" onclick="closeModal()">&times;</button>--}}
-
+<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center hidden z-50" onclick="closeModal()">
+    <div>
         <button onclick="closeModal()"
-            class="absolute p-1 bg-gray-100 border border-gray-300 rounded-full -top-1 -right-1"
+            class="absolute top-4 right-4 text-white text-4xl font-bold z-50"
         >
-            <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-3 h-3"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            >
-            <path
-                fill-rule="evenodd"
-                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                clip-rule="evenodd"
-            />
-            </svg>
+            &times;
         </button>
-
-        <img id="modalImage" src="" alt="Modal Image" class="w-full h-auto object-contain">
-
-        <!-- Кнопки для переключения изображений -->
-        <button
-            id="prevButton"
-            type="button"
-            class="left-0 top-1/2 transform -translate-y-1/2 absolute top-0 start-0 z-30 flex items-center justify-center px-4 cursor-pointer group focus:outline-none"
-            onclick="prevImage()"
-        >
-            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+    </div>
+    <div class="relative max-w-5xl w-full h-full flex items-center justify-center">
+        <div onclick="event.stopPropagation()" id="zoomContainer" class="relative overflow-hidden">
+            <img id="modalImage" src="" alt="Modal Image" class="max-w-full max-h-full object-contain" style="transition: transform 0.2s ease;">
+        </div>
+    </div>
+    <!-- Кнопки для переключения изображений -->
+    <div onclick="event.stopPropagation()" class="absolute start-0 flex h-3/4 px-4">
+        <button onclick="prevImage()" class="absolute left-0 flex items-center justify-center h-full px-4 z-50">
+            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-300/70 hover:bg-gray-300/50 text-white">
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
                 </svg>
                 <span class="sr-only">Previous</span>
             </span>
         </button>
-        <button
-            id="nextButton"
-            type="button"
-            class="right-0 top-1/2 transform -translate-y-1/2 absolute top-0 end-0 z-30 flex items-center justify-center px-4 cursor-pointer group focus:outline-none"
-            onclick="nextImage()"
-        >
-            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+    </div>
+    <div onclick="event.stopPropagation()" class="absolute end-0 flex h-3/4 px-4">
+        <button onclick="nextImage()" class="absolute right-0 flex items-center justify-center h-full px-4 z-50">
+            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-300/70 hover:bg-gray-300/50 text-white">
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                 </svg>
                 <span class="sr-only">Next</span>
@@ -158,11 +151,19 @@
     <a href="{{ route('portfolio.index') }}" class="text-xl dark:text-white">Вернуться</a>
 </div>
 
+<div class="fixed bottom-4 right-4 hidden" id="scrollToTop">
+    <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full shadow-lg">
+        ↑ Наверх
+    </button>
+</div>
+
+
 </x-layouts.app>
 
 <script>
     let currentImageIndex = 0;
     const images = @json($house->images->pluck('url')); // Получаем пути изображений в формате JSON
+    let scale = 1;
 
     function openModal(index) {
         currentImageIndex = index;
@@ -170,21 +171,26 @@
         const modalImage = document.getElementById('modalImage');
         modalImage.src = images[currentImageIndex]; // Устанавливаем текущее изображение в модальное окно
         modal.classList.remove('hidden');
+        resetZoom();
+        document.body.style.overflow = 'hidden'; // Отключаем прокрутку страницы
     }
 
     function closeModal() {
         const modal = document.getElementById('imageModal');
         modal.classList.add('hidden');
+        document.body.style.overflow = ''; // Включаем прокрутку страницы
     }
 
     function prevImage() {
         currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
         document.getElementById('modalImage').src = images[currentImageIndex];
+        resetZoom();
     }
 
     function nextImage() {
         currentImageIndex = (currentImageIndex + 1) % images.length;
         document.getElementById('modalImage').src = images[currentImageIndex];
+        resetZoom();
     }
 
     // Закрытие модального окна при нажатии на клавишу "Esc"
@@ -192,5 +198,31 @@
         if (event.key === "Escape") {
             closeModal();
         }
+    });
+
+    function resetZoom() {
+        scale = 1;
+        const zoomContainer = document.getElementById('zoomContainer');
+        zoomContainer.style.transform = `scale(${scale})`;
+        zoomContainer.style.transformOrigin = 'center center';
+        //modalImage.style.cursor = 'default';
+    }
+
+    document.getElementById('zoomContainer').addEventListener('wheel', function(e) {
+        e.preventDefault();
+        const delta = e.deltaY;
+        const zoomStep = 0.1;
+
+        if (delta < 0 && scale < 3) {
+            scale += zoomStep;
+        } else if (delta > 0 && scale > 1) {
+            scale -= zoomStep;
+        }
+
+        const offsetX = e.offsetX;
+        const offsetY = e.offsetY;
+
+        this.style.transform = `scale(${scale})`;
+        this.style.transformOrigin = `${offsetX}px ${offsetY}px`;
     });
 </script>
