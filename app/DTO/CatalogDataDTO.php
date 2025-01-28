@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 class CatalogDataDTO
 {
     public function __construct(
-        //public readonly CatalogFilterDTO $filter,
+        public readonly CatalogFilterDTO $filter,
         public readonly LengthAwarePaginator $houses,
     ) {
     }

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Contracts\Repositories\HousesRepositoryContract;
+use App\Contracts\Services\CatalogDataCollectorServiceContract;
 use App\Contracts\Services\FlashMessageContract;
 use App\Contracts\Services\HouseCreationServiceContract;
 use App\Contracts\Services\HouseRemoverServiceContract;
 use App\Contracts\Services\HouseUpdateServiceContract;
 use App\Contracts\Services\ImagesServiceContract;
+use App\DTO\CatalogFilterDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\HouseRequest;
 use App\Models\House;
@@ -30,12 +32,25 @@ class HousesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): Factory|View|Application
-    {
+    public function index(
+        Request $request,
+        CatalogDataCollectorServiceContract $catalogDataCollector
+    ): Factory|View|Application {
         //$this->authorize('viewAny', House::class);
-        $houses = $this->housesRepository->findAll();
+        //$houses = $this->housesRepository->findAll();
+
+        $catalogFilterDTO = (new CatalogFilterDTO())
+            ->setName($request->get('name'))
+        ;
+
+        $housesData = $catalogDataCollector->collectCatalogData(
+            $catalogFilterDTO,
+            10,
+            $request->get('page', 1)
+        );
+
         //return view('admin.houses.index', compact('houses'));
-        return view('pages.admin.houses.list', ['houses' => $houses]);
+        return view('pages.admin.houses.list', ['housesData' => $housesData]);
     }
 
     /**

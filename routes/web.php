@@ -23,9 +23,9 @@ Route::get('/test', function() {
 
 Route::get('/',  [PagesController::class, 'home'])->name('home'); // подключение PagesController и его метод home   (get)
 
-Route::get('/construction',  [PagesController::class, 'construction'])->name('construction'); // в href использовать route('construction')
+//Route::get('/construction',  [PagesController::class, 'construction'])->name('construction'); // в href использовать route('construction')
 
-Route::get('/renovation',  [PagesController::class, 'renovation'])->name('renovation'); // страница ремонта
+//Route::get('/renovation',  [PagesController::class, 'renovation'])->name('renovation'); // страница ремонта
 
 Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio.index');
 //Route::get('/portfolio/{house:slug}', [PortfolioController::class, 'show'])->name('portfolio.show'); // :id вроде по дефолту

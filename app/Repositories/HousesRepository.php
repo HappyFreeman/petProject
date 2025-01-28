@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Contracts\Repositories\HousesRepositoryContract;
 
+use App\DTO\CatalogFilterDTO;
 use App\Models\House;
 use Illuminate\Support\Collection;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -55,7 +56,7 @@ class HousesRepository implements HousesRepositoryContract
     }
 
     public function paginateForCatalog(
-        //CatalogFilterDTO $catalogFilterDTO,
+        CatalogFilterDTO $catalogFilterDTO,
         int $perPage = 10,
         int $page = 1,
         array $fields = ['*'],
@@ -64,10 +65,19 @@ class HousesRepository implements HousesRepositoryContract
     ): LengthAwarePaginator {
         
         return $this
-            //->catalogQuery($catalogFilterDTO)
-            ->getModel() // при реализации catalogQuery там получаем модель и фильтруем => эту строчку убрать
+            ->catalogQuery($catalogFilterDTO)
+            //->getModel() // при реализации catalogQuery там получаем модель и фильтруем => эту строчку убрать
             ->with($relations)
             ->paginate($perPage, $fields, $pageName, $page)
+        ;
+    }
+
+    private function catalogQuery(CatalogFilterDTO $catalogFilterDTO): Builder
+    {
+        return $this
+            ->getModel()
+            //->newQuery()
+            ->when($catalogFilterDTO->getName() !== null, fn ($query) => $query->where('name', 'like', '%' . $catalogFilterDTO->getName() . '%'))
         ;
     }
 

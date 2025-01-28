@@ -2,6 +2,7 @@
 
 namespace App\Contracts\Repositories;
 
+use App\DTO\CatalogFilterDTO;
 use App\Models\House;
 use Illuminate\Support\Collection;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -23,7 +24,7 @@ interface HousesRepositoryContract
     public function syncWithoutDetachingImages(House $house, array $images): House;
 
     public function paginateForCatalog(
-        //CatalogFilterDTO $catalogFilterDTO, // мож фильтер добавить
+        CatalogFilterDTO $catalogFilterDTO,
         int $perPage = 10,
         int $page = 1,
         array $fields = ['*'],

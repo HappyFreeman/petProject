@@ -2,42 +2,18 @@
 
 namespace App\DTO;
 
-class CatalogFilterDTO // пока нигде не использую)
+class CatalogFilterDTO
 {
-    private ?string $model = null;
-    private ?int $minPrice = 0;
-    private ?int $maxPrice = 0;
+    private ?string $name = null;
 
-    public function getModel(): ?string
+    public function getName(): ?string
     {
-        return $this->model;
+        return $this->name;
     }
 
-    public function setModel(?string $model): CatalogFilterDTO
+    public function setName(?string $name): CatalogFilterDTO
     {
-        $this->model = $model;
-        return $this;
-    }
-
-    public function getMinPrice(): ?int
-    {
-        return $this->minPrice;
-    }
-
-    public function setMinPrice(?int $minPrice): CatalogFilterDTO
-    {
-        $this->minPrice = $minPrice;
-        return $this;
-    }
-
-    public function getMaxPrice(): ?int
-    {
-        return $this->maxPrice;
-    }
-
-    public function setMaxPrice(?int $maxPrice): CatalogFilterDTO
-    {
-        $this->maxPrice = $maxPrice;
+        $this->name = $name;
         return $this;
     }
 }

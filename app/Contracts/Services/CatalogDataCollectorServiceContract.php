@@ -7,7 +7,7 @@ use App\DTO\CatalogFilterDTO;
 interface CatalogDataCollectorServiceContract
 {
     public function collectCatalogData(
-        //CatalogFilterDTO $catalogFilterDTO,
+        CatalogFilterDTO $catalogFilterDTO,
         //?string $slug,
         int $perPage = 10,
         int $page = 1,

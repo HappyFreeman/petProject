@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contracts\Repositories\HousesRepositoryContract;
 use App\Contracts\Services\CatalogDataCollectorServiceContract;
+use App\DTO\CatalogFilterDTO;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\Request;
@@ -18,7 +19,12 @@ class PortfolioController extends Controller
         Request $request,
         CatalogDataCollectorServiceContract $catalogDataCollector
     ): View {
+        $catalogFilterDTO = (new CatalogFilterDTO())
+            ->setName($request->get('name'))
+        ;
+        
         $housesData = $catalogDataCollector->collectCatalogData(
+            $catalogFilterDTO,
             10,
             $request->get('page', 1)
         );
