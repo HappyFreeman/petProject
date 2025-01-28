@@ -17,7 +17,8 @@ services:
       - DB_PASSWORD=$DB_PASSWORD
       - APP_DEBUG=$APP_DEBUG
     volumes:
-      - ./:/var/www
+      # - ./:/var/www
+      - laravel_storage:/var/www/storage # Именованный volume для хранения данных
     working_dir: /var/www
     depends_on:
       - db
@@ -46,3 +47,6 @@ services:
       - 3306:3306
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
     container_name: ${CONTAINER_PREFIX}_db
+
+volumes:
+  laravel_storage: # Объявление именованного volume
